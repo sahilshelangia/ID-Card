@@ -2,7 +2,7 @@
 {%load static%}
 
 {%block content%}
-<form action="{%url 'visitor:list'%}" method="POST">
+<form action="{%url 'visitor:checkedin_list'%}" method="POST">
 	{%csrf_token%}
 	<input type="text" name="name" placeholder="Name">
 	<input type="text" name="id_no" placeholder="ID Number">
@@ -68,25 +68,26 @@ table#mydata th {
         <thead>
             <tr>
                 <th>Name</th>
-				<th>ID Type</th>
-				<th>ID No.</th>
-				<th>Mob. No.</th>
-				<th>Check In Time</th>
-				<th>Check Out</th>
+        				<th>ID Type</th>
+        				<th>ID No.</th>
+        				<th>Mob. No.</th>
+        				<th>Check In Time</th>
+        				<th>Check Out</th>
             </tr>
         </thead>
         
         <tbody>
-            {%for v in visitors%}
+        {%for v in visitors%}
 					<tr>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.name}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.id_type}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.id_no}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.mob}}</a></td>
 						<td><a href="{%url 'visitor:detail' v.id%}">{{v.time_in}}</a></td>
-						<td><a href="{%url 'visitor:detail' v.id%}">{{v.time_out}}</a></td>
+						<td><a href="{%url 'visitor:detail' v.id%}">Not yet check out</a></td>
 					</tr>
 				{%endfor%}
+            
         </tbody>
     </table>
     <script>

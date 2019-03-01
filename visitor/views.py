@@ -127,12 +127,13 @@ def checkedin_list(request):
 		mob_no=request.POST['mob_no']
 		time_in=request.POST['time_in']
 		time_out=request.POST['time_out']
-		visitors=visitor_detail.objects.filter(status_in=False).filter(name__icontains=names).filter(id_no__icontains=id_no).filter(mob__icontains=mob_no).filter(time_in__gte=time_in).filter(time_out__lte=time_out).order_by('-time_in')
+		visitors=visitor_detail.objects.filter(status_in=True).filter(name__icontains=names).filter(id_no__icontains=id_no).filter(mob__icontains=mob_no).filter(time_in__gte=time_in).filter(time_out__lte=time_out).order_by('-time_in')
 		context={'visitors':visitors}
 	else:
 		visitors=visitor_detail.objects.filter(status_in=True).order_by('-time_in')
 		context={'visitors':visitors}
-	return render(request,'visitor/list.html',context=context)
+	return render(request,'visitor/checkedin_list.html',context=context)
+	
 @login_required
 def check_out(request,pk):
 	visitor=visitor_detail.objects.get(id=pk)
