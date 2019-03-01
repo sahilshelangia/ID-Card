@@ -1,0 +1,23 @@
+{%extends 'visitor/base.html'%}
+{%load static%}
+
+{%block content%}
+<table>
+	<tr>
+		<th>Name</th>
+		<th>ID Type</th>
+		<th>ID No.</th>
+		<th>Mob. No.</th>
+		<th>Check In Time</th>
+	</tr>
+	{%for v in visitors%}
+	<tr>
+		<td><a href="{%url 'visitor:detail' v.id%}">{{v.name}}</a></td>
+		<td>{{v.id_type}}</td>
+		<td>{{v.id_no}}</td>
+		<td>{{v.mov}}</td>
+		<td>{{v.time_in}}</td>
+	</tr>
+	{%endfor%}
+</table>
+{%endblock%}
